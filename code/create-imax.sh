@@ -9,3 +9,8 @@ cd $1/IMAX
 # install the build-repo
 datalad install -d . -s git@github.com:TobiasKadelka/build_imax.git code/build_imax
 datalad save code -m "installed the code for creating the dataset."
+
+python ./code/build_imax/convert_imax.py /data/BnB1/DATA/download_data/Zhou/IMAX/ > ./code/build_imax/convert.sh
+chmod 775 ./code/build_imax/convert.sh
+./code/build_imax/convert.sh
+datalad save -r -m "creating the contents of the dataset."

@@ -1,12 +1,16 @@
 #!/usr/bin/env python
 # coding: utf8
 import os
+import sys
 
-# this function gets an input-path as a string, iterates over all folders in there 
+# this function gets an input-path as a string, iterates over all folders in there
 # and prints commands, that can be copied and be run as a shell script.
 # The script is directly created for IMAX (Susannes dataset, that she got from china)
 # and does not work for other datasets.
-def convert_bids( input_path ):
+def main( ):
+
+	input_path = sys.argv[1]
+	output_path = "./"
 	folder_list = os.listdir( input_path )
 	for folder in folder_list:
 		# I just need to iterate over the folders with data, not the files.
@@ -77,7 +81,4 @@ def convert_bids( input_path ):
 			print ("cp " + source_rest + " " + destination_rest + "\n")
 			print ("cp " + source_rest.replace("Run1", "Run5") + " " + destination_rest.replace("Run1", "Run5").replace("_run-1_", "_run-5_") + "\n")
 
-input_path  = "/data/BnB1/DATA/download_data/Zhou/IMAX/"
-output_path = "/data/BnB1/Raw_Data/IMAX/"
-convert_bids( input_path )
-
+main()
